@@ -23,8 +23,9 @@
 
 #include "Piece.hpp"
 #include "Square.hpp"
+#include "L.hpp"
 
-#define NUM_PIECES 1
+#define NUM_PIECES 2
 
 class PieceGenerator
 {

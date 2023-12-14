@@ -10,7 +10,8 @@ Piece* PieceGenerator::newRandomPiece()
         return new Square();
         break;
     
-    default:
+    case 2:
+        return new L();
         break;
     }
 

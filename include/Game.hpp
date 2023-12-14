@@ -30,7 +30,7 @@
 #include "Square.hpp"
 #include "PieceGenerator.hpp"
 
-#define TIME 50
+#define TIME 100
 
 class Game
 {

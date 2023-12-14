@@ -79,13 +79,18 @@ int TetrisGrid::acessarGrid(int coluna, int linha, int conteudo) {
     // }
     // std::cout << "----------------------------------" << std::endl;
 
-    if (conteudo != -1) {
+    if (conteudo != -1)
+    {
         grid[coluna][linha] = conteudo;
         mt_grid.unlock();
+
         return -1;
-    } else {
+    }
+    else
+    {
         int retorno = grid[coluna][linha];
         mt_grid.unlock();
+    
         return retorno;
     }
 }

@@ -76,7 +76,8 @@ void scoreCalculator(TetrisGrid& gridGame, int* score)
         for(int j = 0; j < GRID_COLUMNS; j++)
         {
             if(gridGame.acessarGrid(j, i, ACCESS) == 0) break;
-            else if(j == GRID_COLUMNS - 1)
+            
+            if(j == GRID_COLUMNS - 1)
             {
                 gridDown(gridGame, i);
                 (*score) += 10;
@@ -88,7 +89,6 @@ void scoreCalculator(TetrisGrid& gridGame, int* score)
 
 void Game::play(Buffer& buffer)
 {
-    
     PieceGenerator pieceGen;
     Piece* piece = NULL;
     int flag = REACHED_BOTTOM;
