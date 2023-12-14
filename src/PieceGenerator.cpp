@@ -13,6 +13,14 @@ Piece* PieceGenerator::newRandomPiece()
     case 2:
         return new L();
         break;
+    
+    case 3:
+        return new I();
+        break;
+
+    case 4:
+        return new IDeitado();
+        break;
     }
 
     return NULL;

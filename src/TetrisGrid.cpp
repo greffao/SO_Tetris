@@ -1,5 +1,7 @@
 #include "../include/TetrisGrid.hpp"
 #include <iostream>
+#include <cstring>
+
 std::mutex mt_grid;
 
 TetrisGrid::TetrisGrid()
@@ -56,13 +58,11 @@ void TetrisGrid::draw(sf::RenderWindow& window)
 
 void TetrisGrid::resetGrid()
 {
-    for (int i = 0; i < GRID_COLUMNS; i++)
-    {
-        for (int j = 0; j < GRID_LINES; j++)
-        {
-            acessarGrid(i, j, 0);
-        }
-    }
+    mt_grid.lock();
+
+    std::memset(grid, 0, sizeof(grid));
+
+    mt_grid.unlock();
 }
 
 int TetrisGrid::acessarGrid(int coluna, int linha, int conteudo) {

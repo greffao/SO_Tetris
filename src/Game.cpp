@@ -25,12 +25,15 @@ void Game::start(Buffer& buffer)
 void Game::end(Buffer& buffer)
 {
     mt_inplay.lock();
+    
     inPlay = false;
 
-    gridGame.resetGrid();
     buffer.esvaziarBuffer();
+    gridGame.resetGrid();
 
     mt_inplay.unlock();
+
+
 }
 
 void playerMov(sf::Keyboard::Key tecla, TetrisGrid& gridGame, Piece& peca, int* flag)
@@ -49,7 +52,6 @@ void playerMov(sf::Keyboard::Key tecla, TetrisGrid& gridGame, Piece& peca, int* 
     else
     {
         (*flag) = peca.down(gridGame);
-
     }
 }
 
@@ -112,6 +114,7 @@ void Game::play(Buffer& buffer)
         tecla = buffer.acessarBuffer(RETURN);
         
         if(flag == NO_REACHED_BOTTOM) playerMov(tecla, this->gridGame, *piece, &flag);
+
         if(flag == REACHED_BOTTOM)
         {
             scoreCalculator(gridGame, &score);

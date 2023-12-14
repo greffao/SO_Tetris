@@ -27,7 +27,8 @@ sf::Keyboard::Key Buffer::acessarBuffer(sf::Keyboard::Key tecla) {
 void Buffer::esvaziarBuffer() {
     mt_buffer.lock(); // Bloqueia o mutex para operação segura no buffer
 
-    while (!buffer.empty()) {
+    while (!buffer.empty()) 
+    {
         buffer.pop(); // Remove todas as teclas do buffer enquanto ele não estiver vazio
     }
 

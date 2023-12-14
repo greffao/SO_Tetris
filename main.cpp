@@ -55,9 +55,10 @@ int main()
                     }
                     if(menu.backButtonBox.getGlobalBounds().contains(mousePosition.x, mousePosition.y))
                     {
-                        menu.show();
                         game.end(buffer);
                         t_game.join();
+                        
+                        menu.show();
                     }
                     if(menu.exitButtonBox.getGlobalBounds().contains(mousePosition.x, mousePosition.y))
                     {
