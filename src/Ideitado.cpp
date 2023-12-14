@@ -5,30 +5,23 @@ int IDeitado::down(TetrisGrid& gridGame)
     int x = centro[X];
     int y = centro[Y];
 
-    if (gridGame.acessarGrid(x, y + 1, ACCESS) == 0 &&
-        gridGame.acessarGrid(x + 1, y + 1, ACCESS) == 0 &&
-        gridGame.acessarGrid(x + 2, y + 1, ACCESS) == 0 &&
-        y + 1 < GRID_LINES)
-    {
-        gridGame.acessarGrid(x, y + 1, 1);
-        gridGame.acessarGrid(x + 1, y + 1, 1);
-        gridGame.acessarGrid(x + 2, y + 1, 1);
+    int a = gridGame.acessarGrid(x, y + 1, ACCESS);
+    int b = gridGame.acessarGrid(x + 1, y + 1, ACCESS);
+    int c = gridGame.acessarGrid(x + 2, y + 1, ACCESS);
 
-        gridGame.acessarGrid(x, y, 0);
-        gridGame.acessarGrid(x + 1, y, 0);
-        gridGame.acessarGrid(x + 2, y, 0);
+    if (y == 0 && (a == 1 || b == 1 || c == 1)) return GAME_OVER;
 
-        centro[Y] = y + 1;
-    }
-    else if (y == 0 &&
-            (gridGame.acessarGrid(x, y + 1, ACCESS) == 1 ||
-             gridGame.acessarGrid(x + 1, y + 1, ACCESS) == 1 ||
-             gridGame.acessarGrid(x + 2, y + 1, ACCESS) == 1)) return GAME_OVER;
+    if (y + 1 == GRID_LINES || a == 1 || b == 1 || c == 1) return REACHED_BOTTOM;
 
-    else if (y + 1 == GRID_LINES || 
-            gridGame.acessarGrid(x, y + 1, ACCESS)     == 1 ||
-            gridGame.acessarGrid(x + 1, y + 1, ACCESS) == 1 ||  
-            gridGame.acessarGrid(x + 2, y + 1, ACCESS) == 1) return REACHED_BOTTOM;
+    gridGame.acessarGrid(x, y + 1, 1);
+    gridGame.acessarGrid(x + 1, y + 1, 1);
+    gridGame.acessarGrid(x + 2, y + 1, 1);
+
+    gridGame.acessarGrid(x, y, 0);
+    gridGame.acessarGrid(x + 1, y, 0);
+    gridGame.acessarGrid(x + 2, y, 0);
+
+    centro[Y] = y + 1;
          
     return NO_REACHED_BOTTOM;
 }
@@ -38,8 +31,7 @@ void IDeitado::left(TetrisGrid& gridGame)
     int x = centro[X];
     int y = centro[Y];
 
-    if( gridGame.acessarGrid(x - 1, y, ACCESS) == 0 &&
-        x > 0)
+    if( x > 0 && gridGame.acessarGrid(x - 1, y, ACCESS) == 0 )
     {
         gridGame.acessarGrid(x - 1, y, 1);
         gridGame.acessarGrid(x + 2, y, 0);
@@ -53,8 +45,7 @@ void IDeitado::right(TetrisGrid& gridGame)
     int x = centro[X];
     int y = centro[Y];
 
-    if( gridGame.acessarGrid(x + 3, y, ACCESS) == 0 &&
-        x + 3 < GRID_COLUMNS)
+    if( x + 3 < GRID_COLUMNS && gridGame.acessarGrid(x + 3, y, ACCESS) == 0 )
     {
         gridGame.acessarGrid(x + 3, y, 1);
         gridGame.acessarGrid(x, y, 0);

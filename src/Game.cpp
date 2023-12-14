@@ -32,8 +32,6 @@ void Game::end(Buffer& buffer)
     gridGame.resetGrid();
 
     mt_inplay.unlock();
-
-
 }
 
 void playerMov(sf::Keyboard::Key tecla, TetrisGrid& gridGame, Piece& peca, int* flag)
@@ -121,6 +119,7 @@ void Game::play(Buffer& buffer)
         }
         if(flag == GAME_OVER)
         {
+            delete piece;
             this->end(buffer);
         }
 

@@ -7,19 +7,15 @@ int I::down(TetrisGrid& gridGame)
 
     int bottom = gridGame.acessarGrid(x, y + 3, ACCESS);
 
-    if (bottom == 0 &&
-        y + 3 < GRID_LINES)
-    {
-        gridGame.acessarGrid(x, y + 3, 1);
+    if ( y == 0 && bottom == 1 ) return GAME_OVER;
 
-        gridGame.acessarGrid(x, y, 0);
+    if (y + 3 == GRID_LINES || bottom == 1) return REACHED_BOTTOM;
 
-        centro[Y] = y + 1;
-    }
-    else if (y == 0 &&
-            (bottom == 1)) return GAME_OVER;
+    gridGame.acessarGrid(x, y + 3, 1);
 
-    else if (y + 3 == GRID_LINES || bottom == 1) return REACHED_BOTTOM;
+    gridGame.acessarGrid(x, y, 0);
+
+    centro[Y] = y + 1;
          
     return NO_REACHED_BOTTOM;
 }
@@ -29,10 +25,10 @@ void I::left(TetrisGrid& gridGame)
     int x = centro[X];
     int y = centro[Y];
 
-    if( gridGame.acessarGrid(x - 1, y, ACCESS) == 0 && 
+    if( x > 0 &&
+        gridGame.acessarGrid(x - 1, y, ACCESS) == 0 && 
         gridGame.acessarGrid(x - 1, y + 1, ACCESS) == 0 &&
-        gridGame.acessarGrid(x - 1, y + 2, ACCESS) == 0 &&
-        x > 0)
+        gridGame.acessarGrid(x - 1, y + 2, ACCESS) == 0 )
     {
         gridGame.acessarGrid(x - 1, y, 1);
         gridGame.acessarGrid(x - 1, y + 1, 1);
@@ -51,10 +47,10 @@ void I::right(TetrisGrid& gridGame)
     int x = centro[X];
     int y = centro[Y];
 
-    if( gridGame.acessarGrid(x + 1, y, ACCESS) == 0 && 
+    if( x + 1 < GRID_COLUMNS && 
+        gridGame.acessarGrid(x + 1, y, ACCESS) == 0 && 
         gridGame.acessarGrid(x + 1, y + 1, ACCESS) == 0 &&
-        gridGame.acessarGrid(x + 1, y + 2, ACCESS) == 0 &&
-        x + 1 < GRID_COLUMNS)
+        gridGame.acessarGrid(x + 1, y + 2, ACCESS) == 0 )
     {
         gridGame.acessarGrid(x + 1, y, 1);
         gridGame.acessarGrid(x + 1, y + 1, 1);
