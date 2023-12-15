@@ -1,11 +1,28 @@
 #include "../include/Game.hpp"
+#include <iostream>
 
 std::mutex mt_inplay;
+std::mutex mt_speed;
+std::mutex mt_score;
 
 Game::Game()
 {
     inPlay = false;
     score = 0;
+    speed = 500;
+}
+
+int Game::accessScore(int x)
+{
+    mt_score.lock();
+    if(x == -1)
+    {
+        mt_score.unlock();
+        return score;
+    }
+    else score += x;
+    mt_score.unlock();
+    return -1;
 }
 
 void Game::draw(sf::RenderWindow& window)
@@ -34,9 +51,9 @@ void Game::end(Buffer& buffer)
     mt_inplay.unlock();
 }
 
-void playerMov(sf::Keyboard::Key tecla, TetrisGrid& gridGame, Piece& peca, int* flag)
+void Game::playerMov(sf::Keyboard::Key tecla, Piece& peca, int* flag)
 {
-    std::this_thread::sleep_for(std::chrono::milliseconds(TIME));
+    std::this_thread::sleep_for(std::chrono::milliseconds(SPEED));
 
     if(tecla == sf::Keyboard::A)
     {
@@ -69,7 +86,7 @@ void gridDown(TetrisGrid& gridGame, int linhaInicial)
     }
 }
 
-void scoreCalculator(TetrisGrid& gridGame, int* score)
+void Game::scoreCalculator()
 {
     for(int i = GRID_LINES - 1; i >= 0; i--)
     {
@@ -80,11 +97,17 @@ void scoreCalculator(TetrisGrid& gridGame, int* score)
             if(j == GRID_COLUMNS - 1)
             {
                 gridDown(gridGame, i);
-                (*score) += 10;
+                accessScore(250);
                 i++;
             }
         }
     }
+}
+
+void scoreChanger(Game* g)
+{
+    std::this_thread::sleep_for(std::chrono::milliseconds(SPEED));
+    (*g).accessScore(1);
 }
 
 void Game::play(Buffer& buffer)
@@ -94,9 +117,13 @@ void Game::play(Buffer& buffer)
     int flag = REACHED_BOTTOM;
 
     sf::Keyboard::Key tecla;
-    
+
+    std::thread t_speed;
+
     while(inPlay)
     {
+        t_speed = std::thread(scoreChanger, this);
+
         if(flag == REACHED_BOTTOM)
         {
             if(piece != NULL)
@@ -111,11 +138,11 @@ void Game::play(Buffer& buffer)
 
         tecla = buffer.acessarBuffer(RETURN);
         
-        if(flag == NO_REACHED_BOTTOM) playerMov(tecla, this->gridGame, *piece, &flag);
+        if(flag == NO_REACHED_BOTTOM) playerMov(tecla, *piece, &flag);
 
         if(flag == REACHED_BOTTOM)
         {
-            scoreCalculator(gridGame, &score);
+            scoreCalculator();
         }
         if(flag == GAME_OVER)
         {
@@ -123,6 +150,8 @@ void Game::play(Buffer& buffer)
             this->end(buffer);
         }
 
+        t_speed.join();
     }
+    if(piece != NULL) delete piece;
 
 }

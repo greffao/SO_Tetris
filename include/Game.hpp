@@ -30,23 +30,26 @@
 #include "Square.hpp"
 #include "PieceGenerator.hpp"
 
-#define TIME 100
+#define SPEED 200
 
 class Game
 {
 public:
     TetrisGrid gridGame;
     bool inPlay;
-    int score;
+    long long int score;
+    int speed;
 
 public:
     Game();
 
-    /*Note que nestas funções, há o uso de semáforos, pois a
-    variável inPlay pode ser acessada pela thread t_game e
-    pela main.*/
     void start(Buffer& buffer);
     void end(Buffer& buffer);
+    int accessScore(int x);
+
+    void playerMov(sf::Keyboard::Key tecla, Piece& peca, int* flag);
+    void scoreCalculator();
+
 
     void play(Buffer& buffer);
 

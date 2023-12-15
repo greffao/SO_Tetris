@@ -26,8 +26,11 @@
 #include "L.hpp"
 #include "I.hpp"
 #include "IDeitado.hpp"
+#include "T.hpp"
+#include "TransposedT.hpp"
+#include "S.hpp"
 
-#define NUM_PIECES 4
+#define NUM_PIECES 7
 
 class PieceGenerator
 {

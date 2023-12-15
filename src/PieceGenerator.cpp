@@ -6,20 +6,29 @@ Piece* PieceGenerator::newRandomPiece()
 
     switch (n)
     {
-    case 1:
+    case ID_SQUARE:
         return new Square();
         break;
     
-    case 2:
+    case ID_L:
         return new L();
         break;
     
-    case 3:
+    case ID_I:
         return new I();
         break;
 
-    case 4:
+    case ID_DEITADO:
         return new IDeitado();
+        break;
+    case ID_T:
+        return new T();
+        break;
+    case ID_TRANSPOSED_T:
+        return new TransposedT();
+        break;
+    case ID_S:
+        return new S();
         break;
     }
 

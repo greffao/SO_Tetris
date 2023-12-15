@@ -19,7 +19,7 @@
 #include "include/Menu.hpp"
 #include "include/Game.hpp"
 
-#define WINDOW_NAME "Threadris"
+#define WINDOW_NAME "Tetris"
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
 
@@ -76,7 +76,7 @@ int main()
 
         game.draw(window);
 
-        menu.draw(window, game.score);
+        menu.draw(window, game.accessScore(-1));
         
         window.display();
     }

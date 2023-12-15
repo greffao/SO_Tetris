@@ -33,11 +33,35 @@ void TetrisGrid::atualizaGridSquares()
         {
             if(acessarGrid(i, j, ACCESS) == 0)
             {
-                gridSquares[i][j].setFillColor(sf::Color(128, 128, 128)); // CINZA
+                gridSquares[i][j].setFillColor(sf::Color(128, 128, 128));
             }
             else if(acessarGrid(i, j, ACCESS) == 1)
             {
-                gridSquares[i][j].setFillColor(sf::Color(128, 0, 0)); // Vermelho
+                gridSquares[i][j].setFillColor(sf::Color(128, 0, 0));
+            }
+            else if(acessarGrid(i, j, ACCESS) == 2)
+            {
+                gridSquares[i][j].setFillColor(sf::Color(0, 128, 0));
+            }
+            else if(acessarGrid(i, j, ACCESS) == 3)
+            {
+                gridSquares[i][j].setFillColor(sf::Color(0, 0, 128)); 
+            }
+            else if(acessarGrid(i, j, ACCESS) == 4)
+            {
+                gridSquares[i][j].setFillColor(sf::Color(255, 255, 255)); 
+            }
+            else if(acessarGrid(i, j, ACCESS) == 5)
+            {
+                gridSquares[i][j].setFillColor(sf::Color(0, 0, 255)); 
+            }
+            else if(acessarGrid(i, j, ACCESS) == 6)
+            {
+                gridSquares[i][j].setFillColor(sf::Color(0, 255, 0)); 
+            }
+            else if(acessarGrid(i, j, ACCESS) == 7)
+            {
+                gridSquares[i][j].setFillColor(sf::Color(255, 0, 0)); 
             }
         }
     }
