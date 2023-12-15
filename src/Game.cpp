@@ -2,14 +2,13 @@
 #include <iostream>
 
 std::mutex mt_inplay;
-std::mutex mt_speed;
 std::mutex mt_score;
 
 Game::Game()
 {
     inPlay = false;
     score = 0;
-    speed = 500;
+    speed = 100;
 }
 
 int Game::accessScore(int x)
@@ -32,6 +31,9 @@ void Game::draw(sf::RenderWindow& window)
 
 void Game::start(Buffer& buffer)
 {   
+    gridGame.resetGrid();
+    score = 0;
+
     mt_inplay.lock();
     inPlay = true;
     mt_inplay.unlock();
@@ -46,14 +48,13 @@ void Game::end(Buffer& buffer)
     inPlay = false;
 
     buffer.esvaziarBuffer();
-    gridGame.resetGrid();
 
     mt_inplay.unlock();
 }
 
 void Game::playerMov(sf::Keyboard::Key tecla, Piece& peca, int* flag)
 {
-    std::this_thread::sleep_for(std::chrono::milliseconds(SPEED));
+    std::this_thread::sleep_for(std::chrono::milliseconds(speed));
 
     if(tecla == sf::Keyboard::A)
     {
@@ -106,7 +107,7 @@ void Game::scoreCalculator()
 
 void scoreChanger(Game* g)
 {
-    std::this_thread::sleep_for(std::chrono::milliseconds(SPEED));
+    std::this_thread::sleep_for(std::chrono::milliseconds((*g).speed));
     (*g).accessScore(1);
 }
 
@@ -118,11 +119,11 @@ void Game::play(Buffer& buffer)
 
     sf::Keyboard::Key tecla;
 
-    std::thread t_speed;
+    std::thread t_score;
 
     while(inPlay)
     {
-        t_speed = std::thread(scoreChanger, this);
+        t_score = std::thread(scoreChanger, this);
 
         if(flag == REACHED_BOTTOM)
         {
@@ -139,6 +140,7 @@ void Game::play(Buffer& buffer)
         tecla = buffer.acessarBuffer(RETURN);
         
         if(flag == NO_REACHED_BOTTOM) playerMov(tecla, *piece, &flag);
+        t_score.join();
 
         if(flag == REACHED_BOTTOM)
         {
@@ -146,11 +148,10 @@ void Game::play(Buffer& buffer)
         }
         if(flag == GAME_OVER)
         {
-            delete piece;
+            
             this->end(buffer);
         }
 
-        t_speed.join();
     }
     if(piece != NULL) delete piece;
 

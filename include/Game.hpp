@@ -30,8 +30,6 @@
 #include "Square.hpp"
 #include "PieceGenerator.hpp"
 
-#define SPEED 200
-
 class Game
 {
 public:

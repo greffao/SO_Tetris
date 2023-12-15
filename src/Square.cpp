@@ -8,9 +8,9 @@ int Square::down(TetrisGrid& gridGame)
     int a = gridGame.acessarGrid(x, y + 2, ACCESS);
     int b = gridGame.acessarGrid(x + 1, y + 2, ACCESS); 
 
-    if ( y == 0 && ( a == 1 || b == 1 ) ) return GAME_OVER;
+    if ( y == 0 && ( a != 0 || b != 0 ) ) return GAME_OVER;
 
-    if ( y + 2 == GRID_LINES || a == 1 || b == 1 ) return REACHED_BOTTOM;
+    if ( y + 2 == GRID_LINES || a != 0 || b != 0 ) return REACHED_BOTTOM;
 
     gridGame.acessarGrid(x, y + 2, 1);
     gridGame.acessarGrid(x + 1, y + 2, 1);

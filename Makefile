@@ -1,4 +1,4 @@
-TARGET = a
+TARGET = so-tetris
 
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall
@@ -32,5 +32,8 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp $(HEADERS)
 # Limpar os arquivos gerados
 clean:
 	rm -rf $(BUILD_DIR) $(BIN_DIR)
+
+run:
+	./$(BIN_DIR)/$(TARGET)
 
 .PHONY: all clean

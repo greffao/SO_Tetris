@@ -31,7 +31,7 @@ void TransposedT::left(TetrisGrid& gridGame)
     int x = centro[X];
     int y = centro[Y];
 
-    if( x > 0 &&
+    if( x - 2 > 0 &&
         gridGame.acessarGrid(x - 1, y, ACCESS) == 0 && 
         gridGame.acessarGrid(x - 2, y + 1, ACCESS) == 0 )
     {

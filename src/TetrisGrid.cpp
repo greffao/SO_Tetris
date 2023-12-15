@@ -73,7 +73,7 @@ void TetrisGrid::draw(sf::RenderWindow& window)
 
     for (int i = 0; i < GRID_COLUMNS; i++)
     {
-        for (int j = 0; j < GRID_LINES; j++)
+        for (int j = 2; j < GRID_LINES; j++)
         {
             window.draw(gridSquares[i][j]);
         }

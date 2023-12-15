@@ -33,7 +33,7 @@
 
 /*Número de linhas e colunas do grid*/
 #define GRID_COLUMNS 10
-#define GRID_LINES 20
+#define GRID_LINES 22
 
 /*Flag que indica o tipo de acesso do grid*/
 #define ACCESS -1
