@@ -9,6 +9,9 @@ Universidade de São Paulo* <br>
 
 Este projeto implementa um jogo Tetris utilizando threads e semáforos para controlar a mecânica do jogo.
 
+## Video Aprsentação
+[Drive](https://drive.google.com/file/d/1js8fROPJXvsKxb4OUxlmHHcwQk11OWBb/view?usp=sharing).
+
 ## Introdução
 
 Este projeto em C++ implementa um jogo Tetris com o uso de threads e semáforos para gerenciar a mecânica do jogo. Possui uma interface gráfica e segue a jogabilidade clássica do Tetris.
