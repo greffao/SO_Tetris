@@ -22,12 +22,6 @@ O projeto está estruturado com os seguintes arquivos principais:
 - `TetrisGrid.hpp`: Manipula o grid do jogo e sua exibição na interface gráfica.
 - `Menu.cpp`: Gerencia o menu do jogo e elementos da interface.
 
-## Tutorial
-
-- O jogo inicia com um menu permitindo ao jogador iniciar o gameplay ou sair.
-- Use as teclas 'A' e 'D' do teclado para mover as peças para a esquerda ou para a direita, respectivamente.
-- O jogo termina quando as peças alcançam o topo do grid.
-
 ## Uso de Threads e Semáforos
 
 O jogo conta com 3 threads:
@@ -45,7 +39,7 @@ O jogo conta com 3 threads:
 
 A sincronização multithread foi realizada pelo uso de semáforos mutex.
 
-## Instalação
+## Instalação Linux
 
 **Pré-Requisitos:** Um computador, sistema operacional Linux e a biblioteca SFML.
 
@@ -58,9 +52,46 @@ git clone https://github.com/greffao/SO_Tetris.git
 4. Entre no diretório recém criado `SO_Tetris` com o terminal.
 5. Digite o comando:
 ```
+sudo apt-get install libsfml-dev
+```
+6. Então compile o programa digitando o comando:
+```
 make
 ```
 6. Execute o jogo com o comando:
 ```
 make run
 ```
+
+## Instalação Windows
+
+**Pré-Requisitos:** Um computador, sistema operacional Windows, MinGW instalado e a biblioteca SFML.
+
+1. Faça o download do [SFML](https://www.sfml-dev.org/download/sfml/2.6.1/) de acordo com o eu MinGW instalado.
+1. Entre no [repositório do jogo no Github](https://github.com/greffao/SO_Tetris).
+2. Abra o terminal no diretório em que vc deseja clonar o jogo.
+3. Clone o repositório:
+```
+git clone https://github.com/greffao/SO_Tetris.git
+```
+4. Escolha a IDE de sua preferência e adicione o SFML como include e também adicione a pasta bin do SFML nas váriaveis de ambiente.
+5. Entre no diretório recém criado `SO_Tetris` com o terminal.
+6. Então abra o terminal e digite o comando:
+```
+mingw32-make all
+```
+6. Execute o jogo com o comando:
+```
+mingw32-make run
+```
+**_Obs:_** Rodar o Tetris em ambiente Windows pode ser uma tarefa complicada
+por conta da necessidade de arrumar os includes e os DLL´s por isso recomendamos seguir o tutorial de instalação
+do [SFML](https://www.sfml-dev.org/tutorials/2.6/start-vc.php).
+
+## Tutorial
+
+- O jogo inicia com um menu permitindo ao jogador iniciar o gameplay ou sair.
+- Use as teclas 'A' e 'D' do teclado para mover as peças para a esquerda ou para a direita, respectivamente.
+- A pontuação é determinada por duas váriaveis uma delas é pelo tempo de jogo, enquanto se sobrevive ao Tetris
+a pontuação é acrescida, a segunda forma de pontuar é preenchendo linhas e assim se ganha 250 pontos por linhas preenchidas.
+- O jogo termina quando as peças alcançam o topo do grid.
