@@ -2,6 +2,7 @@
 
 *Lucas Greff Meneses - 13671615 <br>
 Henrique Souza Marques - 11815722 <br>
+Roberto Silva - 10850453 <br>
 Vinicius Carneiro Macedo - 11915752 <br> <br>
 Instituto de Ciências Matemáticas e de Computação <br>
 Universidade de São Paulo* <br>
