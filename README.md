@@ -24,6 +24,14 @@ O projeto está estruturado com os seguintes arquivos principais:
 
 ## Uso de Threads e Semáforos
 
+O que é uma Thread e um Semáforo?
+- Thread, ou processo leve, é a unidade basica de utilização da CPU, consistindo de: contador de programa,
+  conjunto de registradores e uma pilha de execução. Basicamente é uma sub-rotina de um programa capaz de rodar de forma assíncrona.
+
+- Semáforo é um método de sincronização que permite a contagem de recursos
+  disponíveis.
+
+
 O jogo conta com 3 threads:
 - A thread `main` lida com os eventos de entrada de informacao (botões 'Play', 'Exit' e 'Back', bem como teclas 'A' e 'D') e display de informações na tela.
 - A thread `t_game` lida com toda a lógica do jogo, como a movimentação das peças, por comando do jogador ou descida automática feita pelo sistema, atualização do grid, criação de novas peças, cálculo do score quando uma linha é completada.
